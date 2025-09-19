@@ -17,5 +17,5 @@ const server = http.createServer((req, res) => {
 // Démarre le serveur à l'adresse 127.0.0.1 sur le port 8000
 // Affiche un message dès que le serveur commence à écouter les requêtes
 server.listen(port, hostname, () => {
-  console.log(`Le serveur tourne à l'adresse https://${hostname}:${port}/`);
+  console.log(`Le serveur tourne à l'adresse http://${hostname}:${port}/`);
 });
