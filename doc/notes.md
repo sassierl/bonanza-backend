@@ -45,6 +45,12 @@ Carte :
 ```
 
 ```{json}
+Plateau :
+  attributs :
+    TODO : réfléchir à la partie trades du jeu.
+```
+
+```{json}
 Joueur :
   attributs :
     main (relation d'ordre) List[Carte]
