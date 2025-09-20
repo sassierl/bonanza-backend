@@ -53,6 +53,7 @@ Plateau :
 ```{json}
 Joueur :
   attributs :
+    nom string
     main (relation d'ordre) List[Carte]
     pieces d'or int
     champs Champs
