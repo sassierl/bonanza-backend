@@ -12,11 +12,9 @@ class Game {
   }
 
   initDeck() {
-    for (let value = 0; value <= 20; value+=2){
-      for (const def of cardDefinition){
-        for (let i=0; i < def.number; i++) {
-          this.deck.push(new Card(def.name, def.requiredAmount, def.number));
-        }
+    for (const def of cardDefinition){
+      for (let i=0; i < def.number; i++) {
+        this.deck.push(new Card(def.name, def.requiredAmount, def.number));
       }
     }
     this.shuffle(this.deck);
@@ -32,7 +30,7 @@ class Game {
   init(){
     this.initDeck(); // Deck complet mélangé
     this.players.forEach(player => {
-      
+      player.draw(this.deck, 5);
     });
   }
 }

@@ -1,6 +1,9 @@
 const Game = require('./Game');
+const Player = require('./Player')
 
-const game = new Game(5);
-game.initDeck();
 
-console.log(game.deck.slice(0, 5)); // les 5 premières cartes après mélange
+const player1 = new Player('joueur 1', 1);
+const player2 = new Player('joueur 2', 2);
+const game = new Game([player1, player2]);
+game.init();
+
