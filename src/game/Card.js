@@ -1,8 +1,8 @@
 class Card {
-  constructor(name, requiredAmount, number){
+  constructor(name, sellValues, number){
     this.number = number
     this.name = name;
-    this.requiredAmount = requiredAmount;
+    this.sellValues = sellValues;
   }
 }
 

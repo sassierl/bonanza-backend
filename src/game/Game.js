@@ -13,9 +13,12 @@ class Game {
   }
 
   initDeck() {
+    // Pour chaques types de cartes
     for (const def of cardDefinition){
+      // On donne le nombre de cartes
       for (let i=0; i < def.number; i++) {
-        this.deck.push(new Card(def.name, def.sellValue, def.number));
+        // On ajoute la carte au deck
+        this.deck.push(new Card(def.name, def.sellValues, def.number));
       }
     }
     this.shuffle(this.deck);
@@ -28,10 +31,18 @@ class Game {
     }
   }
 
-  init(){
+  initGame(){
     this.initDeck(); // Deck complet mélangé
     this.players.forEach(player => {
+      if(this.nbPlayers === 3){
+        player.numberOfFields = 3;
+      } else {
+        player.numberOfFields = 2;
+      }
       player.draw(this.deck, NUMBEROFCARD);
+      player.giveFields();
+      const randomIndex = Math.floor(Math.random() * this.nbPlayers);
+      this.currentPlayer = this.players[randomIndex];
     });
   }
 }
