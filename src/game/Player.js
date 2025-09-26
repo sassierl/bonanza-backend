@@ -1,22 +1,35 @@
 class Player {
-  constructor(name, index, level="Expert"){
+  constructor(name, level="Expert"){
     if(level !== "Expert") this.numberOfFields = 3;
-    this.index = index;
+    this.level = level;
     this.name = name;
     this.goldCoins = 0;
-    this.main = [];
+    this.hand = [];
     this.fields = [];
     this.harvest = [];
   }
 
   draw(deck, cardAmount) {
-    this.main = deck.splice(0,cardAmount);
+    for (var i = 0; i < cardAmount; i++) {
+       this.hand.push(deck.pop());
+    }
+  }
+
+  initPlayer() {
+    this.goldCoins = 0;
+    this.hand = [];
+    this.givesFields();
   }
 
   givesFields() {
+    this.fields = [];
     for (var i=0;  i<this.numberOfFields; i++){
       this.fields.push([]);
     }
+  }
+
+  plant() {
+    const card = this.hand.pop()
   }
 
   sellField(){
@@ -24,4 +37,4 @@ class Player {
   }
 }
 
-export default Player;
+module.exports = Player;

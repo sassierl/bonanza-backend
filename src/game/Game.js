@@ -31,19 +31,25 @@ class Game {
     }
   }
 
-  initGame(){
+  initGame() {
     this.initDeck(); // Deck complet mélangé
     this.players.forEach(player => {
+      player.initPlayer();
       if(this.nbPlayers === 3){
         player.numberOfFields = 3;
       } else {
-        player.numberOfFields = 2;
+        if(player.level === "Expert") {
+          player.numberOfFields = 2;
+        }
       }
-      player.draw(this.deck, NUMBEROFCARD);
-      player.giveFields();
+      this.draw(this.deck, this.NUMBEROFCARD);
       const randomIndex = Math.floor(Math.random() * this.nbPlayers);
       this.currentPlayer = this.players[randomIndex];
     });
+  }
+
+  startTurn() {
+    this.currentPlayer.plant();
   }
 }
 

@@ -10,6 +10,11 @@
 
 Déroulement du tour d'un seul joueur.
 
+turn()
+  - plant()
+  - plantAnotherBean()
+  - ...
+
 ### Jeu des haricots
 
 fonction plant()
@@ -17,9 +22,9 @@ fonction plant()
 - Il joue le premier haricot (Obligatoire) :
   -  Soit il a la place ou déjà un champ -> l'haricot s'ajoute sur l'un des champs du joueur (fonction plant)
   -  Sinon il n'a pas la place :
-     -  Soit (il a 2 champs à plus que 1) OU (il a 2 champs a exactement 1) -> il peut vendre celui de son choix (gestion d'input whichFieldSell)
+     -  Soit (il a 2 champs à plus que 1) OU (il a 2 champs a exactement 1) -> il peut vendre celui de son choix (gestion d'input whichFieldSell --> va jusqu'au Frontend)
      -  Sinon il a 1 champ à 1 et l'autre à plus de 1 -> on vend celui à plus de 1 (pas d'input)
-- Il a le choix de jouer le second haricot (Gestion d'input plantAnotherBean):
+- Il a le choix de jouer le second haricot (Gestion d'input plantAnotherBean --> va jusqu'au Frontend): Oui plant si non on fait rien
   - On rappelle la même fonction
 
 ### Marchander et cadeau
