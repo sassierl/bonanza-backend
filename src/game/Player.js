@@ -30,6 +30,21 @@ class Player {
 
   plant() {
     const card = this.hand.pop()
+    var indiceVide = 0;
+    // cas on a le bon champ
+    const goodField = this.fields.find(f => f[0] === card);
+    if (goodField) {
+      goodField.push(card);
+      return;
+    }
+    // cas champ vide
+    const emptyField = this.fields.find(f => f.length === 0);
+    if (emptyField) {
+      emptyField.push(card);
+      return;
+    }
+    // cas champs a tej
+    // TODO : faire les cas suivants
   }
 
   sellField(){
