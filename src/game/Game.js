@@ -1,7 +1,8 @@
-const Card = require('./Card');
-const cardDefinition = require('./cardDefinition');
+const Card = require('./Card').default;
+const cardDefinition = require('./cardDefinition').default;
 
 class Game {
+  NUMBEROFCARD = 5;
   constructor(players) {
     this.nbPlayers = players.length;
     this.players = players;
@@ -14,7 +15,7 @@ class Game {
   initDeck() {
     for (const def of cardDefinition){
       for (let i=0; i < def.number; i++) {
-        this.deck.push(new Card(def.name, def.requiredAmount, def.number));
+        this.deck.push(new Card(def.name, def.sellValue, def.number));
       }
     }
     this.shuffle(this.deck);
@@ -30,7 +31,7 @@ class Game {
   init(){
     this.initDeck(); // Deck complet mélangé
     this.players.forEach(player => {
-      player.draw(this.deck, 5);
+      player.draw(this.deck, NUMBEROFCARD);
     });
   }
 }

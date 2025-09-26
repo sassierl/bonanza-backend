@@ -12,9 +12,14 @@ class Player {
     this.main = deck.splice(0,cardAmount);
   }
 
-  sellField(){
+  initChamps(){
+    this.champs.push([]);
+    this.champs.push([]);
+  }
 
+  sellField(){
+    // TODO : Faire cette fonction
   }
 }
 
-module.exports = Player;
+export default Player;

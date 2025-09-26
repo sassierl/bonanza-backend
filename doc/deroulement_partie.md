@@ -72,3 +72,4 @@ Tous les joueurs vendent automatiquement et le joueur avec le plus de gold gagne
 - Un joueur débutant peut commencer avec 3 champs
 - à 5 personnes, le 3e champ ne coûte que 2 gold
 - Si tous les joueurs sont expérimentés on peut marchander avec des golds (à faire dans le marchandage)
+- Si on est 3 commencer avec 3 champs
