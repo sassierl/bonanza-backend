@@ -42,7 +42,7 @@ class Game {
           player.numberOfFields = 2;
         }
       }
-      this.draw(this.deck, this.NUMBEROFCARD);
+      player.draw(this.deck, this.NUMBEROFCARD);
       const randomIndex = Math.floor(Math.random() * this.nbPlayers);
       this.currentPlayer = this.players[randomIndex];
     });
@@ -50,6 +50,9 @@ class Game {
 
   startTurn() {
     this.currentPlayer.plant();
+    if(plantAnotherBean()) { // TODO : faire cette fonction dans le backend
+      this.currentPlayer.plant();
+    }
   }
 }
 
