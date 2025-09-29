@@ -9,7 +9,7 @@ class Game {
     this.deck = [];
     this.currentPlayer;
     this.discardPile = [];
-    this.gameBoard;
+    this.gameBoard = [];
   }
 
   initDeck() {
@@ -48,16 +48,22 @@ class Game {
     });
   }
 
-  beanPlanting() {
-    // TODO : changer la logique pour séparer le cackend et le jeu.
-    const card = this.currentPlayer.hand.pop(); // TODO : gérer le cas où la main est vide
-    const options = this.currentPlayer.plantableFields(card);
-    // ici on doit trouver l'index choisi par le joueur
-    this.currentPlayer.plant(card, index);
-    if(plantAnotherBean()) { // TODO : faire cette fonction dans le backend
-      this.currentPlayer.plant();
+
+  getFieldOptions() {
+    if (this.currentPlayer.hand.length === 0) {
+      return {card: null, options: []};
     }
+    const card = this.currentPlayer.hand.pop();
+    const options = this.currentPlayer.plantableFields(card);
+    return {card, options};
   }
+
+  setGameBoard() {
+    this.gameBoard[0] = this.deck.pop();
+    this.gameBoard[1] = this.deck.pop();
+    return this.gameBoard;
+  }
+
 }
 
 module.exports = Game;

@@ -1,0 +1,1 @@
+Navigateur : application qui exécute des fichiers html

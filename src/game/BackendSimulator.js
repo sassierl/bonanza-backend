@@ -1,3 +1,4 @@
+import Game from "./Game";
 import readline from readline;
 
 class BackendSimulator {
@@ -25,3 +26,5 @@ class BackendSimulator {
     this.rl.close();
   }
 }
+
+export default BackendSimulator;
