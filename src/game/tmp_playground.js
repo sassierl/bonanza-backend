@@ -1,5 +1,6 @@
 const Game = require('./Game');
-const Player = require('./Player')
+const Player = require('./Player');
+const BackendSimulator = require('./BackendSimulator');
 
 // Appli (Front , Back)
 // Jeu (game)
@@ -15,14 +16,8 @@ const Tim = new Player("Tim", "Beginner");
 
 const game = new Game([Thommy, Benjo, Sassier, Adhemar, Tim]);
 game.initGame();
-console.log(game.players[4].name);
-console.log(game.players[4].fields);
+console.log(`${game.currentPlayer.name} starts the game!`);
+game.startTurn();
 
-const game2 = new Game([Thommy, Benjo, Adhemar, Tim])
-game2.initGame();
-console.log(game2.players[3].name);
-console.log(game2.players[3].fields);
-console.log(game2.players[3].hand);
-
-console.log(game2.currentPlayer.name);
+const sim = BackendSimulator();
 

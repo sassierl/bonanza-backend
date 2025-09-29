@@ -48,8 +48,12 @@ class Game {
     });
   }
 
-  startTurn() {
-    this.currentPlayer.plant();
+  beanPlanting() {
+    // TODO : changer la logique pour séparer le cackend et le jeu.
+    const card = this.currentPlayer.hand.pop(); // TODO : gérer le cas où la main est vide
+    const options = this.currentPlayer.plantableFields(card);
+    // ici on doit trouver l'index choisi par le joueur
+    this.currentPlayer.plant(card, index);
     if(plantAnotherBean()) { // TODO : faire cette fonction dans le backend
       this.currentPlayer.plant();
     }

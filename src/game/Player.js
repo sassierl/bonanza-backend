@@ -1,3 +1,5 @@
+import BackendSimulator from './BackendSimulator.js';
+
 class Player {
   constructor(name, level="Expert"){
     if(level !== "Expert") this.numberOfFields = 3;
@@ -72,10 +74,7 @@ class Player {
     }
   }
 
-  plant() {
-    const card = this.hand.pop();
-    var indexes = this.plantableFields(card);
-    const index = choose(indexes); // TODO à faire sachant que class.choose
+  plant(card, index) {
     this.fields[index].push(card);
     this.sortFields();
   }
