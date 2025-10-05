@@ -2,7 +2,7 @@ const express = require('express')
 const app = express()
 const port = 3001
 
-app.get('/', (req, res) => {
+app.get('/lobby', (req, res) => {
   // demande le  niveau des joueurs
   res.send('Salut Thomas!')
 })

@@ -78,6 +78,34 @@ class Player {
     this.fields[index].push(card);
     this.sortFields();
   }
+
+  receiveTradeOffer(cards) {
+    // logique frontend d'acceptation ou non d'une offre
+  }
+
+  choose1Card(cards) {
+    // logique frontend de choix d'une carte
+  }
+
+  chooseCardsToTrade() {
+    var cards = []
+    var isFinished = false
+    while (this.hand.length > 0 && !isFinished) {
+      // fonction de proposition de carte
+      cards.push(this.choose1Card(this.hand))
+    }
+    return cards;
+  }
+
+  initTrade(tradePartner) {
+    const cardsToTrade = this.chooseCardsToTrade();
+    const result = tradePartner.receiveTradeOffer(cardsToTrade);
+    if (result.accepted) {
+      // Faire l'échange + planter les cartes
+    } else {
+      // Récupérer ses cartes
+    }
+  }
 }
 
 module.exports = Player;

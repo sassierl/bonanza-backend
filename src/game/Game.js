@@ -61,6 +61,7 @@ class Game {
   setGameBoard() {
     this.gameBoard[0] = this.deck.pop();
     this.gameBoard[1] = this.deck.pop();
+    // renvoyer les gens avec qui on peut échanger
     return this.gameBoard;
   }
 
