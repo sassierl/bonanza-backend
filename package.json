@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "./src/api/server.js",
+  "type": "module",
   "scripts": {
     "start": "node ./src/api/server.js",
     "dev": "nodemon ./src/api/server.js",
@@ -21,6 +22,7 @@
   },
   "homepage": "https://github.com/sassierl/bonanza-backend#readme",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^5.1.0",
     "socket.io": "^4.8.1"
   },
