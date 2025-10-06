@@ -1,0 +1,25 @@
+Les 2 cartes sont tirés
+
+-> initier un trade Joueur -> Joueur
+
+check si c'est le currentPlayer
+
+
+Pas le currentPlayer
+initTrade(None):
+Pas possible de spam
+Obligé de trade avec currentPlayer
+Propose une liste de carte de ta main contre une liste de carte de ton choix.
+
+Doit appeler une fonction de la classe Player receiveTrade() appelée (sur le currentPlayer dans ce cas)
+receiveTrade()
+Bloque la possibilité de trade avec les autres joueurs
+
+Montre la proposition au Joueur visé qui peut l'accepter ou non. Le choix est bloqué à refuser si le joueur n'est pas en capacité de l'accepter
+
+counterOffer() :
+// bloque dans le Trade
+Modification ensuite appler initTrade
+
+Le joueur peut planter
+
