@@ -43,9 +43,9 @@ class Game {
         }
       }
       player.draw(this.deck, this.NUMBEROFCARD);
-      const randomIndex = Math.floor(Math.random() * this.nbPlayers);
-      this.currentPlayer = this.players[randomIndex];
     });
+    const randomIndex = Math.floor(Math.random() * this.nbPlayers);
+    this.currentPlayer = this.players[randomIndex];
   }
 
 
