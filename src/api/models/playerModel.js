@@ -9,7 +9,6 @@ addFormats(ajv);
 // Compiler le schema
 const validatePlayerSchema = ajv.compile(playerSchema);
 
-// Fonction factory
 export function createPlayer(name, level) {
   return {
     id: `player_${Date.now()}_${Math.floor(Math.random() * 10000)}`,
@@ -19,11 +18,9 @@ export function createPlayer(name, level) {
   };
 }
 
-// Validation basée sur le schema JSON
 export function validatePlayer(player) {
   const valid = validatePlayerSchema(player);
   if (!valid) {
-    // Transformer les erreurs AJV en format lisible
     const errors = validatePlayerSchema.errors.map(err => {
       return `${err.instancePath} ${err.message}`;
     });
