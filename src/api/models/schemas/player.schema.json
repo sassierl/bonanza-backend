@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Player",
+  "description": "A bonanza player",
+  "type":  "object",
+  "properties":  {
+    "id": {
+      "type": "string",
+      "pattern": "^player_[0-9]+_[0-9]+$",
+      "description": "Unique identifier of the player"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 20,
+      "description": "Username"
+    },
+    "level": {
+      "type":  "string",
+      "enum":  ["expert", "beginner"],
+      "description": "Player level"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Creation date of the player"
+    }
+  },
+  "required": ["id", "name", "level", "createdAt"],
+  "additionalProperties": false
+}
