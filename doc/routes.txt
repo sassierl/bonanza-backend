@@ -1,0 +1,77 @@
+┌─────────────────────────────────────────────────┐
+│         ROUTES UTILISATEURS                     │
+└─────────────────────────────────────────────────┘
+
+POST   /api/users                    Créer un compte
+POST   /api/users/login              Se connecter
+GET    /api/users/: userId            Infos d'un utilisateur
+PUT    /api/users/:userId            Modifier son profil
+GET    /api/users/:userId/stats      Statistiques d'un joueur
+
+
+┌─────────────────────────────────────────────────┐
+│         ROUTES LOBBIES                          │
+└─────────────────────────────────────────────────┘
+
+GET    /api/lobbies                  Liste tous les lobbies
+POST   /api/lobbies                  Créer un nouveau lobby
+GET    /api/lobbies/:lobbyId         Détails d'un lobby
+DELETE /api/lobbies/:lobbyId         Supprimer un lobby
+
+POST   /api/lobbies/:lobbyId/join    Rejoindre un lobby
+POST   /api/lobbies/:lobbyId/leave   Quitter un lobby
+POST   /api/lobbies/:lobbyId/start   Démarrer la partie
+
+
+┌─────────────────────────────────────────────────┐
+│         ROUTES PARTIES                          │
+└─────────────────────────────────────────────────┘
+
+GET    /api/games                    Liste des parties (actives, terminées)
+POST   /api/games                    Créer une partie (depuis lobby)
+GET    /api/games/:gameId            État complet d'une partie
+DELETE /api/games/:gameId            Abandonner/supprimer partie
+
+GET    /api/games/:gameId/state      État du jeu (deck, phase, etc.)
+GET    /api/games/:gameId/players    Liste des joueurs
+
+
+┌─────────────────────────────────────────────────┐
+│         ROUTES ACTIONS DE JEU                   │
+└─────────────────────────────────────────────────┘
+
+POST   /api/games/:gameId/actions/play-card        Jouer une carte
+POST   /api/games/:gameId/actions/plant            Planter un haricot
+POST   /api/games/:gameId/actions/harvest          Récolter un champ
+POST   /api/games/:gameId/actions/trade            Proposer un échange
+POST   /api/games/:gameId/actions/accept-trade     Accepter un échange
+POST   /api/games/: gameId/actions/pass             Passer son tour
+
+GET    /api/games/:gameId/history    Historique des actions
+
+
+src/
+├── api/
+│   ├── server.js
+│   └── routes/
+│       ├── users.js           → Routes /api/users/*
+│       ├── lobbies.js         → Routes /api/lobbies/*
+│       ├── games.js           → Routes /api/games/*
+│       └── actions.js         → Routes /api/games/:id/actions/*
+│
+├── game/
+│   ├── models/
+│   │   ├── User.js
+│   │   ├── Lobby.js
+│   │   ├── Game.js
+│   │   ├── Player.js
+│   │   └── GameState.js
+│   │
+│   └── logic/
+│       ├── cardManager.js     → Logique des cartes
+│       ├── fieldManager.js    → Logique des champs
+│       ├── tradeManager.js    → Logique des échanges
+│       └── gameEngine.js      → Moteur principal
+│
+└── socket/
+    └── gameSocket.js          → Événements temps réel
