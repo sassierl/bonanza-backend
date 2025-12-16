@@ -1,1 +1,18 @@
 Navigateur : application qui exécute des fichiers html
+
+CLIENT (Frontend)
+    ↓ HTTP Request
+┌─────────────────────────────────┐
+│   API / ROUTES                  │  ← Point d'entrée HTTP
+│   (routes/players.js)           │     Reçoit, valide params, répond
+└─────────────┬───────────────────┘
+              ↓ appelle
+┌─────────────────────────────────┐
+│   SERVICE                       │  ← Logique métier + Stockage
+│   (services/playerService.js)  │     Gère la "base de données"
+└─────────────┬───────────────────┘
+              ↓ utilise
+┌─────────────────────────────────┐
+│   MODÈLE                        │  ← Structure + Validation
+│   (models/playerModel.js)      │     Fonctions pures
+└─────────────────────────────────┘
