@@ -1,11 +1,12 @@
-const Card = require('./Card').default;
-const cardDefinition = require('./cardDefinition').default;
+import Card from './Card.js';
+import cardDefinition from './cardDefinition.js';
 
 class Game {
   NUMBEROFCARD = 5;
-  constructor(players) {
-    this.nbPlayers = players.length;
-    this.players = players;
+  constructor(id) {
+    this.id = id;
+    this.players = [];
+    this.nbPlayers = this.players.length;
     this.deck = [];
     this.currentPlayer;
     this.discardPile = [];
@@ -35,6 +36,7 @@ class Game {
     this.initDeck(); // Deck complet mélangé
     this.players.forEach(player => {
       player.initPlayer();
+      player.gameId = this.id;
       if(this.nbPlayers === 3){
         player.numberOfFields = 3;
       } else {
@@ -65,6 +67,15 @@ class Game {
     return this.gameBoard;
   }
 
+  addPlayer(player) {
+    if (this.players.length < 5) {
+      player.gameId = this.id;
+      this.players.push(player);
+      this.nbPlayers = this.players.length;
+      return true;
+    }
+    return false;
+  }
 }
 
-module.exports = Game;
+export default Game;

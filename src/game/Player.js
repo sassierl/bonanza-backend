@@ -3,6 +3,7 @@ import BackendSimulator from './BackendSimulator.js';
 class Player {
   constructor(name, level="Expert"){
     if(level !== "Expert") this.numberOfFields = 3;
+    this.gameId = 0;
     this.level = level;
     this.name = name;
     this.goldCoins = 0;
@@ -42,7 +43,7 @@ class Player {
       i -= 1;
     }
     if (i === -1) {
-      this.harvest = his.harvest.concat(field);
+      this.harvest = this.harvest.concat(field);
       field = [];
       return 0;
     } else {
@@ -108,4 +109,4 @@ class Player {
   }
 }
 
-module.exports = Player;
+export default Player;
