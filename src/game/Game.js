@@ -76,6 +76,43 @@ class Game {
     }
     return false;
   }
+
+   /**
+   * Convertir en objet pour l'API
+   * @param {string} playerId - ID du joueur qui fait la requête
+   */
+  toJSON(playerId = null) {
+    return {
+      turn: this.turn,
+      phase: this.phase,
+      currentPlayerId: this.currentPlayer.id,
+      players: this.players.map(p => 
+        p.id === playerId ? p.toJSON() : p.toPublicJSON()
+      ),
+      deckSize: this.deck.length,
+      gameBoard: this.gameBoard,
+      discardPileSize: this.discardPile.length
+    };
+  }
+
+  /**
+   * Créer une instance depuis un objet
+   */
+  static fromJSON(data) {
+    const players = data.players.map(p => Player.fromJSON(p));
+    const game = new Game(players);
+    game.deck = data.deck || [];
+    game.currentPlayer = data.currentPlayer || null;
+    game.discardPile = data.discardPile || [];
+    game. gameBoard = data.gameBoard || [];
+    game.turn = data.turn || 0;
+    game.phase = data.phase || 'plant';
+    return game;
+  }
+
+  getCurrentPlayer() {
+    return this.players[this.currentPlayerIndex];
+  }
 }
 
 export default Game;

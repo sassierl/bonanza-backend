@@ -1,8 +1,9 @@
+import { GAME_RULES, PLAYER_LEVELS } from '../../config/constants.js';
 import BackendSimulator from './BackendSimulator.js';
 
 class Player {
-  constructor(name, level="Expert"){
-    if(level !== "Expert") this.numberOfFields = 3;
+  constructor(name, level=PLAYER_LEVELS.EXPERT){
+    if(level !== PLAYER_LEVELS.EXPERT) this.numberOfFields = 3;
     this.gameId = 0;
     this.level = level;
     this.name = name;
@@ -12,7 +13,7 @@ class Player {
     this.harvest = [];
   }
 
-  draw(deck, cardAmount) {
+  draw(deck, cardAmount = GAME_RULES.CARD_TO_DRAW_PER_TURN) {
     for (var i = 0; i < cardAmount; i++) {
        this.hand.push(deck.pop());
     }
@@ -106,6 +107,55 @@ class Player {
     } else {
       // Récupérer ses cartes
     }
+  }
+
+  toJSON() {
+    return {
+      id: this.id,
+      name: this.name,
+      level: this.level,
+      goldCoins: this.goldCoins,
+      handSize: this.hand.length,  // On ne montre pas les cartes des autres
+      hand: this.hand,  // Inclus pour le joueur actuel
+      fields: this.fields.map(field => ({
+        type: field[0]?.name || null,
+        cards: field.length,
+        value: field.length > 0 ? this.calculateFieldValue(field) : 0
+      })),
+      harvestSize: this.harvest.length
+    };
+  }
+
+  toPublicJSON() {
+    return {
+      id: this.id,
+      name: this.name,
+      level: this.level,
+      goldCoins: this. goldCoins,
+      handSize: this.hand.length,  // Juste le nombre, pas les cartes
+      fields: this.fields.map(field => ({
+        type: field[0]?.name || null,
+        cards: field.length
+      })),
+      harvestSize: this.harvest.length
+    };
+  }
+
+  fromJSON(data) {
+    const player = new Player(data.name, data.level);
+    player.gameId = data.gameId;
+    return player;
+  }
+
+  calculateFieldValue(field) {
+    if (field.length === 0) return 0;
+    const card = field[0];
+    for (let i = card.sellValues.length - 1; i >= 0; i--) {
+      if (field.length >= card.sellValues[i].cards) {
+        return card.sellValues[i].gold;
+      }
+    }
+    return 0;
   }
 }
 

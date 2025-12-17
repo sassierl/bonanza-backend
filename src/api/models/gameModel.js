@@ -1,7 +1,8 @@
 import Ajv from 'ajv';
 import addFormats from 'ajv-formats';
-import gameSchema from './schemas/game.schema.json' with { type: 'json' };
+import gameSchema from './schemas/game.schema.js';
 import playerSchema from './schemas/player.schema.json' with { type: 'json' };
+import { GAME_RULES, GAME_STATUS, VALIDATION } from '../config/constants.js';
 
 const ajv = new Ajv();
 addFormats(ajv);
@@ -12,13 +13,13 @@ ajv.addSchema(playerSchema, 'player.schema.json');
 // Puis compiler le schema Game (qui contient la référence)
 const validateGameSchema = ajv.compile(gameSchema);
 
-export function createGame(creator) {
+export function createGame(creator, maxPlayers = GAME_RULES.MAX_PLAYERS) {
   return {
-    id: `game_${Date.now()}_${Math.floor(Math.random() * 10000)}`,
-    status: "pending",
+    id: `${VALIDATION.GAME_ID_PREFIX}${Date.now()}_${Math.floor(Math.random() * 10000)}`,
+    status: GAME_STATUS.WAITING,
     creatorId: creator.id,
     players: [creator],
-    maxPlayers: 6,
+    maxPlayers,
     createdAt: new Date().toISOString()
   };
 }
@@ -38,6 +39,15 @@ export function removePlayerFromGame(game, playerId) {
     return true;
   }
   return false;
+}
+
+export function canStartGame(game) {
+  return game.status === GAME_STATUS.WAITING &&
+         game.players.length >= GAME_RULES.MIN_PLAYERS;
+}
+
+export function isGameFull(game) {
+  return game.players.length >= game.maxPlayers;
 }
 
 export function validateGame(game) {
