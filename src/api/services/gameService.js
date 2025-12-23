@@ -18,7 +18,7 @@ export const registerGame = (creator) => {
 export function createNewGame(username, level, nbMaxPlayers = GAME_RULES.MAX_PLAYERS) {
   const creator = registerPlayer(username, level);
   const game = createGame(creator, nbMaxPlayers);
-  activeGames.set(gameId, gameData);
+  activeGames.set(game.id, game);
 }
 
 export const getGameById = (id) => {
