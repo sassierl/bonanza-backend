@@ -12,13 +12,12 @@ ajv.addSchema(playerSchema, 'player.schema.json');
 // Puis compiler le schema Game (qui contient la référence)
 const validateGameSchema = ajv.compile(gameSchema);
 
-export function createGame(creator) {
+export function createGame(creator, maxPlayers = ) {
   return {
-    id: `game_${Date.now()}_${Math.floor(Math.random() * 10000)}`,
+    id: creator.id, // Utiliser l'ID du créateur comme ID de jeu
     status: "pending",
-    creatorId: creator.id,
     players: [creator],
-    maxPlayers: 6,
+    maxPlayers: maxPlayers,
     createdAt: new Date().toISOString()
   };
 }

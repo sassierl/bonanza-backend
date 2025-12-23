@@ -8,8 +8,8 @@ export const registerPlayer = (name, level) => {
   }
   const newPlayer = createPlayer(name, level);
   const validation = validatePlayer(newPlayer);
-  if (!validation. valid) {
-    throw new Error(`Validation échouée: ${validation.errors. join(', ')}`);
+  if (!validation.valid) {
+    throw new Error(`Validation échouée: ${validation.errors.join(', ')}`);
   }
   players.set(newPlayer.id, newPlayer);
   return newPlayer;
